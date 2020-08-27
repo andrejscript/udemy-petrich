@@ -1,0 +1,90 @@
+body {
+    font-family: "Space Grotesk", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    color: #48484A;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: inherit !important;
+}
+
+
+/* header */
+.header-website {
+	 position: fixed;
+	 height: 48pt;
+	 top: 0;
+	 width: 100%;
+	 display: flex;
+	 flex-wrap: wrap;
+	 margin: 0;
+	 background-color: #48484A;
+	 color: #F2F2F2;
+	 list-style: none;
+	 padding: 8pt 32pt;
+	 z-index: 3;
+	 font-size: 14px;
+	 /* font-weight: 100; */
+}
+ .header-website.visible {
+	 height: 100%;
+	 position: fixed;
+}
+ .header-website > li {
+	 text-align: center;
+	 flex: 0 0 100%;
+	 display: none;
+	 position: relative;
+}
+ .header-website > li a {
+	 text-decoration: none;
+	 color: #F2F2F2;
+}
+ .header-website > li a:hover {
+	 color: #ffffff;
+}
+ .header-website > li a.market-place {
+	border-radius: 16pt;
+    padding: 6pt 8pt;
+    background-color: rgba(242,242,242,0.4);
+}
+
+.header-website > li a.market-place:hover {
+    background-color: rgba(242,242,242,0.6);
+  }
+ .header-website > li.logo {
+	 display: block;
+	 flex: 0 0 50%;
+	 text-align: left;
+}
+ .header-website > li.logo img {
+	 width: 70pt;
+	 height: 30pt;
+}
+ .header-website > li.hamburger {
+	 display: block;
+	 flex: 0 0 50%;
+	 text-align: right;
+}
+ .header-website > li.visible {
+	 display: block;
+}
+ .header-website > li form {
+	 display: inline-block;
+	 margin-left: 60pt;
+	 margin-right: 60pt;
+}
+ .header-website > li form:before {
+	 display: inline-block;
+	 content: "";
+	 background: url('/themes/openweathermap/assets/img/owm_icons/icon_search.svg') no-repeat;
+	 height: 12pt;
+	 width: 12pt;
+	 cursor: pointer;
+	 margin-bottom: -2pt;
+}
+ .header-website > li form input {
+	 /* font-size: 0.95rem; */
+	 border-radius: 0;
