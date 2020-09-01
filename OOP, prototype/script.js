@@ -17,13 +17,13 @@ const john = {
 
 // #1 __proto__
 
-// john.__proto__ = soldier;
-// console.log(soldier.armor);
+john.__proto__ = soldier;
+console.log(john.armor);
 
 // #2 setPrototype
 
-// Object.setPrototypeOf(john, soldier);
-// soldier.voice();
+Object.setPrototypeOf(john, soldier);
+john.voice();
 
 // #3 Object.create
 
