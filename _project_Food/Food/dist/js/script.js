@@ -103,7 +103,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function openModal() {
         modal.classList.add('show');
-        clearInterval(modalTimerId);
+        // clearInterval(modalTimerId); // всплытие модального окна по времени
     }
 
     modalTrigger.forEach((item) => {
@@ -128,7 +128,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const modalTimerId = setTimeout(openModal, 3000);
+    // const modalTimerId = setTimeout(openModal, 3000); // всплытие модального окна по времени
 
     function showModalByScroll() {
         if(window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
@@ -139,4 +139,77 @@ window.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', showModalByScroll); 
        
+
+
+//Class for cards
+
+    class MenuCard {
+        constructor(src, alt, title, descr, price, parentSelector, ...classes) {
+            this.src = src;
+            this.alt = alt;
+            this.title = title;
+            this.descr = descr;
+            this.price = price;
+            this.classes = classes;
+            this.parent = document.querySelector(parentSelector);
+            this.transfer = 27;
+            this.changeToUAH();
+        }
+
+        changeToUAH() {
+            this.price = this.price * this.transfer;
+        }
+
+        render() {
+            const el = document.createElement('div');
+            if (this.classes.length === 0) {
+                this.el = 'menu__item';
+                el.classList.add(this.el);
+            } else {
+                this.classes.forEach(className => el.classList.add(className));
+            }
+            el.innerHTML = `
+                <img src=${this.src} alt=${this.alt}>
+                <h3 class="menu__item-subtitle">${this.title}</h3>
+                <div class="menu__item-descr">${this.descr}</div>
+                <div class="menu__item-divider"></div>
+                <div class="menu__item-price">
+                    <div class="menu__item-cost">Цена:</div>
+                    <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
+                </div>
+            `;
+            this.parent.append(el);
+        }
+    }
+
+    new MenuCard(
+        'img/tabs/vegy.jpg',
+        'vegy',
+        'Меню "Фитнес"',
+        'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+        9,
+        '.menu .container',
+
+    ).render();
+
+    new MenuCard(
+        'img/tabs/vegy.jpg',
+        'vegy',
+        'Меню "Фитнес"',
+        'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+        9,
+        '.menu .container',
+        'menu__item'
+    ).render();
+
+    new MenuCard(
+        'img/tabs/vegy.jpg',
+        'vegy',
+        'Меню "Фитнес"',
+        'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+        9,
+        '.menu .container',
+        'menu__item'
+    ).render();
+
 });
