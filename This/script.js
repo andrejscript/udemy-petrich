@@ -49,9 +49,9 @@
 
 // ----------------------- THIS: CALL - APPLY
 
-function sayName(surname) {
+function sayName(surname, sur) {
     console.log(this);
-    console.log(this.name +' '+ surname);
+    console.log(this.name +' '+ surname + ' ' + sur);
 }
 
 let user = {
@@ -62,7 +62,7 @@ let user = {
 sayName.call(user, 'Smith');
 
 // // // 5) метод apply передает в ф-цию контекст объекта заданного в значении, аргументы через массив.
-sayName.apply(user, ['Smith']);
+sayName.apply(user, ['Smith', 'Smith2']);
 
 
 

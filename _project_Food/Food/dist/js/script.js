@@ -2,7 +2,7 @@
 
 window.addEventListener('DOMContentLoaded', () => {
 
-// TABS
+// TABS 1
 
     const tabs = document.querySelectorAll('.tabheader__item'),
           tabsContent = document.querySelectorAll('.tabcontent'),
@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-// TIMER
+// TIMER 2
 
     const deadline = '2020-09-30';
 
@@ -95,7 +95,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
     setClock('.timer', deadline);
 
-//MODAL
+//MODAL 3
 
     const modalTrigger = document.querySelectorAll('[data-modal]'),
           modal = document.querySelector('.modal'),
@@ -141,7 +141,7 @@ window.addEventListener('DOMContentLoaded', () => {
        
 
 
-//Class for cards
+//Class for cards 4
 
     class MenuCard {
         constructor(src, alt, title, descr, price, parentSelector, ...classes) {
@@ -211,5 +211,58 @@ window.addEventListener('DOMContentLoaded', () => {
         '.menu .container',
         'menu__item'
     ).render();
+
+    // Forms 5
+
+    const forms = document.querySelectorAll('form'),
+          message = {
+              loading: 'Загрузка...', 
+              success: 'Спасибо!',
+              failure: 'Что-то не так...'
+          };
+
+    forms.forEach(item => {
+        postData(item);
+    });
+
+    function postData(form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const statusMessage = document.createElement('div');
+            statusMessage.classList.add('status');
+            statusMessage.textContent = message.loading;
+            form.append(statusMessage);
+
+            const request = new XMLHttpRequest();
+            request.open('POST', 'server.php');     
+            request.setRequestHeader('Content-type', 'application/json');
+            const formData = new FormData(form);
+            
+            const obj = {};
+            formData.forEach(function(value, key) {
+                console.log(value);
+                console.log(key);
+                obj[key] = value;
+            });
+            
+            const json = JSON.stringify(obj);
+            
+            request.send(json);
+
+            request.addEventListener('load', () => {
+                if (request.status === 200) {
+                    console.log(request.response);
+                    statusMessage.textContent = message.success;
+                    form.reset();
+                    setTimeout(() => {
+                        statusMessage.remove();
+                    }, 2000);
+                } else {
+                    statusMessage.textContent = message.failure;
+                }
+            });
+        });
+    }
 
 });
