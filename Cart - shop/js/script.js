@@ -41,20 +41,28 @@ window.addEventListener('DOMContentLoaded', () => {
       openBtn.addEventListener('click', openCart);
       close.addEventListener('click', closeCart);
 
-      for (i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener('click', () => {
-          let item  = products[i].cloneNode(true),
-          btn = item.querySelector('button');
+      // for (let i = 0; i < buttons.length; i++) {
+      //   buttons[i].addEventListener('click', () => {
+      //     let item  = products[i].cloneNode(true),
+      //     btn = item.querySelector('button');
+
+      //     btn.remove();
+      //     field.appendChild(item);
+      //     products[i].remove();
+
+      //   });
+      // }
+
+      buttons.forEach((item, i) => {
+        item.addEventListener('click', () => {
+          let el  = products[i].cloneNode(true),
+          btn = el.querySelector('button');
 
           btn.remove();
-          field.appendChild
+          field.appendChild(el);
+          products[i].remove();
+
         });
-
-      }
-
-
-
-
-
+      });
 
 });
